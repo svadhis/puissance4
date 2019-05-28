@@ -3,22 +3,26 @@ function Grid() {
 	this.cols = 7;
 	this.rows = 6;
 
-	this.drawGrid = (game) => {
+	this.drawGrid = (game, boardAnim) => {
 		// Ligne de jeu
+		const backPlay = document.createElement('div');
+		backPlay.setAttribute('id', 'backplay');
+
 		const play = document.createElement('table');
 		play.setAttribute('id', 'play');
-		play.setAttribute('class', 'mx-auto play shadow mb-4');
+		play.setAttribute('class', 'mx-auto play shadow mb-4 slide-in-blurred-bottom');
 
 		document.getElementById('board').innerHTML = '';
 
-		document.getElementById('board').appendChild(play);
+		document.getElementById('board').appendChild(backPlay);
+		document.getElementById('backplay').appendChild(play);
 
 		this.drawLine(game, 'play', 'play', 'play block');
 
 		// Tableau
 		const grid = document.createElement('table');
 		grid.setAttribute('id', 'grid');
-		grid.setAttribute('class', 'mx-auto shadow');
+		grid.setAttribute('class', 'mx-auto ' + boardAnim);
 
 		document.getElementById('board').appendChild(grid);
 
@@ -53,11 +57,16 @@ function Square(type, classes, rows) {
 		cell.setAttribute('id', 'cell-' + row + col);
 		document.getElementById('row-' + row).appendChild(cell);
 
+		const backSquare = document.createElement('div');
+		backSquare.setAttribute('id', 'backSquare-' + row + col);
+		backSquare.setAttribute('class', 'blocksquare backsquare');
+
 		const square = document.createElement('div');
 		square.setAttribute('id', 'square-' + row + col);
 		square.setAttribute('class', classes);
 
-		document.getElementById('cell-' + row + col).appendChild(square);
+		document.getElementById('cell-' + row + col).appendChild(backSquare);
+		document.getElementById('backSquare-' + row + col).appendChild(square);
 
 		if (type === 'play') {
 			square.addEventListener('mouseover', () => {

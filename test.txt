@@ -1,0 +1,14 @@
+
+
+var combinationsX = this.winIf.filter(combination => {
+        combination.filter(x => {
+            this.arrayposX.includes(x)).length === 3
+        }
+    }
+);
+
+var combinationsX = this.winIf.filter(
+	(combination) => combination.filter((x) => this.arrayposX.includes(x)).length === 3
+);
+
+

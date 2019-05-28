@@ -4,6 +4,7 @@ let ifc;
 
 let player1;
 let player2;
+let boardAnim;
 
 // Start game button
 
@@ -17,6 +18,9 @@ function startGame(player1, player2) {
 	if (!player1 || !player2) {
 		player1 = document.getElementById('player1').value;
 		player2 = document.getElementById('player2').value;
+		boardAnim = 'slide-in-blurred-bottom';
+	} else {
+		boardAnim = 'flip-2-hor-bottom-1';
 	}
 
 	grid = new Grid();
@@ -29,7 +33,7 @@ function startGame(player1, player2) {
 
 	game.setIfc(ifc);
 
-	ifc.newGame(grid, player1, player2);
+	ifc.newGame(grid, boardAnim, player1, player2);
 }
 
 // Players
@@ -81,6 +85,7 @@ function Game(player1, player2, grid) {
 			if (lowestSquare.style.backgroundColor === '') {
 				let activeColor = this.activePlayer.color;
 				lowestSquare.style.backgroundColor = activeColor;
+				lowestSquare.classList.add('bounce-in-top');
 				this.checkResult(activeColor, grid.cols, grid.rows);
 				this.switchPlayer(this.ifc);
 				square.style.backgroundColor = this.activePlayer.color;

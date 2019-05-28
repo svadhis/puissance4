@@ -2,10 +2,10 @@ function Interface(game) {
 	this.player1 = game.player1;
 	this.player2 = game.player2;
 
-	this.newGame = (grid, player1, player2) => {
+	this.newGame = (grid, boardAnim, player1, player2) => {
 		document.getElementById('newgame').style.display = 'none';
 
-		grid.drawGrid(game);
+		grid.drawGrid(game, boardAnim);
 
 		const instructions = document.getElementById('instructions');
 
